@@ -1,6 +1,7 @@
 package com.tenniscourts.tenniscourts;
 
 import com.tenniscourts.exceptions.EntityNotFoundException;
+import com.tenniscourts.schedules.CreateScheduleRequestDTO;
 import com.tenniscourts.schedules.Schedule;
 import com.tenniscourts.schedules.ScheduleRepository;
 import com.tenniscourts.schedules.ScheduleService;
@@ -27,7 +28,7 @@ public class TennisCourtService {
             Schedule schedule = Schedule.builder()
                     .tennisCourt(tennisCourtCreated)
                     .startDateTime(scheduleDTO.getStartDateTime())
-                    .endDateTime(scheduleDTO.getEndDateTime())
+                    .endDateTime(scheduleDTO.getStartDateTime().plusHours(1))
                     .build();
 
             scheduleRepository.saveAndFlush(schedule);
