@@ -5,6 +5,8 @@ import io.swagger.annotations.*;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.time.LocalDate;
 import java.util.List;
 
 @AllArgsConstructor
@@ -23,13 +25,23 @@ public class ScheduleController extends BaseRestController {
     }
 
     @GetMapping("/bydate")
-    @ApiOperation("Find a tennis court by id")
+    @ApiOperation("Find a tennis court schedule by date")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Schedule found"),
             @ApiResponse(code = 404, message = "Schedule not found")
     })
     public ResponseEntity<List<ScheduleDTO>> findSchedulesByDates(FindScheduleRequestDTO findScheduleRequestDTO) {
         return ResponseEntity.ok(scheduleService.findSchedulesByDates(findScheduleRequestDTO));
+    }
+
+    @GetMapping("/availableSlots")
+    @ApiOperation("Find time slots available in a schedule date")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Schedule found"),
+            @ApiResponse(code = 404, message = "Schedule not found")
+    })
+    public ResponseEntity<List<ScheduleDTO>> findScheduleWithAvailableSlots(LocalDate date) {
+        return ResponseEntity.ok(scheduleService.findScheduleWithAvailableSlots(date));
     }
 
     @GetMapping("/{scheduleId}")
