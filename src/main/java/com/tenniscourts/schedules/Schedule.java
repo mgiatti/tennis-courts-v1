@@ -30,7 +30,7 @@ import java.util.List;
 @EqualsAndHashCode(callSuper = true, exclude = "reservations")
 public class Schedule extends BaseEntity<Long> {
 
-    @ManyToOne
+    @ManyToOne(optional = true)
     @NotNull
     private TennisCourt tennisCourt;
 

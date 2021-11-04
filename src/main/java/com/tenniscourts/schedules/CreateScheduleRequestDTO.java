@@ -1,6 +1,7 @@
 package com.tenniscourts.schedules;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -12,10 +13,12 @@ import java.time.LocalDateTime;
 public class CreateScheduleRequestDTO {
 
     @NotNull
+    @ApiModelProperty(required = true, example = "1")
     private Long tennisCourtId;
 
-    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     @NotNull
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm")
+    @ApiModelProperty(required = true, example = "2021-11-01T10:00")
     private LocalDateTime startDateTime;
 
 }
